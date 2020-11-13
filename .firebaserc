@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "nglogingus": {
+      "hosting": {
+        "firechat": [
+          "nglogingus"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<div class="container text-center">
+  <div *ngIf="chatService.user.id" class="chat-window">
+    <h2>Chatroom</h2>
+    <hr />
+    <div class="app-mensajes" id="app-mensajes">
+      <div
+        [ngClass]="{
+          'text-right': chatService.user.id === chat.id,
+          'text-left': chatService.user.id !== chat.id
+        }"
+        *ngFor="let chat of chatService.chats"
+      >
+        <span
+          [ngClass]="{
+            'badge-success': chatService.user.id === chat.id,
+            'badge-dark': chatService.user.id !== chat.id
+          }"
+          class="badge"
+        >
+          {{ chat.name }}
+          <small>
+            {{ chat.date | date: "shortTime" }}
+          </small>
+        </span>
+        <p>{{ chat.message }}</p>
+      </div>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="send(form)">
+      <div class="form-group row p-3 pt-4">
+        <input
+          class="form-control col-9"
+          type="text"
+          name="message"
+          [(ngModel)]="message"
+          placeholder="Send message"
+          required
+        />
+        <input type="submit" class="btn btn-outline-primary col-3" />
+      </div>
+    </form>
+  </div>
+</div>
